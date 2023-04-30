@@ -21,9 +21,7 @@ let api: Target = .executableTarget(
     .product(name: vapor.name, package: vapor.package)
   ],
   path: "Sources",
-  resources: [
-    .process("res/")
-  ]
+  resources: [.process("res/")]
 )
 
 let apiTests: Target = .testTarget(
@@ -32,11 +30,12 @@ let apiTests: Target = .testTarget(
     .target(name: api.name),
     .product(name: "XCTVapor", package: vapor.package)
   ],
-  path: "Tests"
+  path: "Tests",
+  exclude: [" Unit.xctestplan"]
 )
 
 package.targets = [api, apiTests]
 
 // MARK: - (PRODUCTS)
 
-package.products = [.executable(name: "FactsAPI", targets: [api.name])]
+package.products = [.executable(name: api.name, targets: [api.name])]
