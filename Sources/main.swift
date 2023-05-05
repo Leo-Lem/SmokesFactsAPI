@@ -2,7 +2,8 @@
 
 import Vapor
 
-let app = Application()
+let env = try Environment.detect()
+let app = Application(env)
 defer { app.shutdown() }
 
 app.http.server.configuration.port = 4567
