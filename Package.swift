@@ -4,7 +4,7 @@ import PackageDescription
 
 let package = Package(
   name: "FactsAPI",
-  platforms: [.macOS(.v12)]
+  platforms: [.macOS(.v13)]
 )
 
 // MARK: - (DEPENDENCIES)
@@ -20,7 +20,7 @@ let api: Target = .executableTarget(
   dependencies: [
     .product(name: vapor.name, package: vapor.package)
   ],
-  path: "Sources",
+  path: "src",
   resources: [.process("res/")]
 )
 
@@ -30,7 +30,7 @@ let apiTests: Target = .testTarget(
     .target(name: api.name),
     .product(name: "XCTVapor", package: vapor.package)
   ],
-  path: "Tests",
+  path: "test",
   exclude: [" Unit.xctestplan"]
 )
 
