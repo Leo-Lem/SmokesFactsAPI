@@ -2,6 +2,8 @@ import XCTest
 import XCTVapor
 @testable import FactsAPI
 
+// TODO: integrate with dependencies to mock outgoing network requests.
+
 @MainActor
 final class FactsAPITests: XCTestCase {
   private var app: Application!
@@ -17,20 +19,6 @@ final class FactsAPITests: XCTestCase {
   
   func test_whenCallingRoot_thenReturnsSomething() async throws {
     try app.test(.GET, "") { res in
-      XCTAssertEqual(res.status, .ok)
-      XCTAssertFalse(res.body.string.isEmpty)
-    }
-  }
-  
-  func test_whenGettingEnglishFact_thenReturnsSomething() async throws {
-    try app.test(.GET, "en") { res in
-      XCTAssertEqual(res.status, .ok)
-      XCTAssertFalse(res.body.string.isEmpty)
-    }
-  }
-  
-  func test_whenGettingGermanFact_thenReturnsSomething() async throws {
-    try app.test(.GET, "de") { res in
       XCTAssertEqual(res.status, .ok)
       XCTAssertFalse(res.body.string.isEmpty)
     }

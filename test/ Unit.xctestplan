@@ -18,6 +18,12 @@
         }
       ]
     },
+    "environmentVariableEntries" : [
+      {
+        "key" : "OPEN_API_KEY",
+        "value" : "NO_KEY_HERE"
+      }
+    ],
     "testTimeoutsEnabled" : true
   },
   "testTargets" : [
