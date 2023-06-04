@@ -1,3 +1,5 @@
+.env.*
+
 # swiftpm
 .build
 Packages

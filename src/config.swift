@@ -10,8 +10,9 @@ extension Application {
     }
     
     get(":lang") { req in
-      guard let fact = facts.random(for: req.parameters.get("lang")!) else { throw Abort(.notFound) }
-      return fact
+      let language = Locale.LanguageCode(req.parameters.get("lang")!)
+      guard let fact = facts.random(in: language) else { throw Abort(.notFound) }
+      return fact.content
     }
     
     return self

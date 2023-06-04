@@ -12,19 +12,22 @@
     "codeCoverage" : {
       "targets" : [
         {
-          "containerPath" : "container:facts",
+          "containerPath" : "container:",
           "identifier" : "FactsAPI",
           "name" : "FactsAPI"
         }
       ]
     },
+    "environmentVariableEntries" : [
+
+    ],
     "testTimeoutsEnabled" : true
   },
   "testTargets" : [
     {
       "parallelizable" : true,
       "target" : {
-        "containerPath" : "container:facts",
+        "containerPath" : "container:",
         "identifier" : "FactsAPITests",
         "name" : "FactsAPITests"
       }
