@@ -6,6 +6,8 @@ import struct Dependencies.Dependency
 
 extension Gpt3Client {
   static func fetchFact(in language: Locale.LanguageCode) async throws -> String? {
+    assert(apiKey != "<#API_KEY#>", "Please copy .env to .env.development and insert a valid API key…")
+
     @Dependency(\.urlSession) var session: URLSession
 
     var request = URLRequest(url: URL(string: "https://api.openai.com/v1/chat/completions")!)

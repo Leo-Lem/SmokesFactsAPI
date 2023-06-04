@@ -33,7 +33,6 @@ extension Facts {
     @Dependency(\.date.now) var now
     for (index, fact) in facts.enumerated().filter({ $0.element.expiry < now }) {
       if let fact = try await fetch(in: fact.language) {
-        print("updating expired")
         facts[index] = fact
       }
     }
