@@ -19,10 +19,7 @@
       ]
     },
     "environmentVariableEntries" : [
-      {
-        "key" : "OPEN_API_KEY",
-        "value" : "NO_KEY_HERE"
-      }
+
     ],
     "testTimeoutsEnabled" : true
   },
@@ -30,7 +27,7 @@
     {
       "parallelizable" : true,
       "target" : {
-        "containerPath" : "container:facts",
+        "containerPath" : "container:",
         "identifier" : "FactsAPITests",
         "name" : "FactsAPITests"
       }

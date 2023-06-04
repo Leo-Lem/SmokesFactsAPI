@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:.env">
+   </FileRef>
+   <FileRef
+      location = "group:.env.development">
+   </FileRef>
+   <FileRef
+      location = "group:Dockerfile">
+   </FileRef>
+   <FileRef
+      location = "group:Package.swift">
+   </FileRef>
+   <FileRef
+      location = "group:.gitignore">
+   </FileRef>
+   <FileRef
+      location = "group:src">
+   </FileRef>
+   <FileRef
+      location = "group:test">
+   </FileRef>
+   <FileRef
+      location = "group:">
+   </FileRef>
+</Workspace>

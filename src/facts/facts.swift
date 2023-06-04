@@ -5,6 +5,8 @@ import Foundation
 final class Facts {
   static let supportedLanguages: [Locale.LanguageCode] = [.english, .german]
 
+  let apiKey: String
+
   let cacheCount: Int
   let expiry: Duration
   let refreshInterval: Duration
@@ -22,10 +24,12 @@ final class Facts {
   private var refreshTask: Task<Void, Never>!
 
   init(
+    apiKey: String,
     cacheCount: Int = 5,
     expiry: Duration = .seconds(86400),
     refreshInterval: Duration = .seconds(3600)
   ) {
+    self.apiKey = apiKey
     self.cacheCount = cacheCount
     self.expiry = expiry
     self.refreshInterval = refreshInterval
@@ -62,7 +66,7 @@ final class Facts {
   private func fetchFact(_ language: Locale.LanguageCode) async throws -> Fact? {
     var request = URLRequest(url: URL(string: "https://api.openai.com/v1/chat/completions")!)
     request.httpMethod = "POST"
-    request.setValue("Bearer \(openApiKey)", forHTTPHeaderField: "Authorization")
+    request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     request.httpBody = try JSONEncoder().encode(GPTRequest(language))
 
@@ -75,6 +79,4 @@ final class Facts {
       return nil
     }
   }
-
-  private var openApiKey: String { ProcessInfo.processInfo.environment["OPEN_API_KEY"]! }
 }

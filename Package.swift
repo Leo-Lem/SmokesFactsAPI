@@ -20,8 +20,7 @@ let api: Target = .executableTarget(
   dependencies: [
     .product(name: vapor.name, package: vapor.package)
   ],
-  path: "src",
-  resources: [.process("res/")]
+  path: "src"
 )
 
 let apiTests: Target = .testTarget(
