@@ -9,16 +9,18 @@ let package = Package(
 
 // MARK: - (DEPENDENCIES)
 
-let vapor = (name: "Vapor", package: "vapor")
-
-package.dependencies = [.package(url: "https://github.com/vapor/\(vapor.package)", from: "4.76.0")]
+package.dependencies = [
+  .package(url: "https://github.com/vapor/vapor", from: "4.76.0"),
+  .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "0.5.1")
+]
 
 // MARK: - (TARGETS)
 
 let api: Target = .executableTarget(
-  name: "FactsAPI",
+  name: package.name,
   dependencies: [
-    .product(name: vapor.name, package: vapor.package)
+    .product(name: "Vapor", package: "vapor"),
+    .product(name: "Dependencies", package: "swift-dependencies")
   ],
   path: "src"
 )
@@ -27,7 +29,7 @@ let apiTests: Target = .testTarget(
   name: "\(api.name)Tests",
   dependencies: [
     .target(name: api.name),
-    .product(name: "XCTVapor", package: vapor.package)
+    .product(name: "XCTVapor", package: "vapor")
   ],
   path: "test",
   exclude: [" Unit.xctestplan"]

@@ -5,7 +5,7 @@
       location = "group:.env">
    </FileRef>
    <FileRef
-      location = "group:.env.development">
+      location = "group:.env.dev">
    </FileRef>
    <FileRef
       location = "group:Dockerfile">
