@@ -9,5 +9,5 @@ defer { app.shutdown() }
 app.http.server.configuration.port = 4567
 
 try app
-  .configure(Facts())
+  .configure(await Facts())
   .run()

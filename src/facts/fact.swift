@@ -2,7 +2,7 @@
 
 import Foundation
 
-struct Fact: Codable {
+struct Fact: Codable, Equatable {
   let content: String
   let expiry: Date
   let language: Locale.LanguageCode

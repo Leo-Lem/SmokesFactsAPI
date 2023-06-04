@@ -12,7 +12,7 @@
     "codeCoverage" : {
       "targets" : [
         {
-          "containerPath" : "container:facts",
+          "containerPath" : "container:",
           "identifier" : "FactsAPI",
           "name" : "FactsAPI"
         }

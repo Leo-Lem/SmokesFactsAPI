@@ -1,6 +1,7 @@
 // Created by Leopold Lemmermann on 30.04.23.
 
 import Foundation
+import Dependencies
 
 final class Facts {
   static let supportedLanguages: [Locale.LanguageCode] = [.english, .german]
@@ -19,10 +20,12 @@ final class Facts {
     cacheCount: Int = 5,
     expiry: TimeInterval = 86400,
     refreshInterval: TimeInterval = 3600
-  ) {
+  ) async {
     self.cacheCount = cacheCount
     self.expiry = expiry
     self.refreshInterval = refreshInterval
+
+    do { try await initialize() } catch { print(error) }
 
     refresh = updateTask()
   }

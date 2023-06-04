@@ -7,17 +7,19 @@ extension Facts {
   func updateTask() -> Task<Void, Never> {
     Task {
       while true {
+        @Dependency(\.continuousClock) var clock
+
         do {
-          try await updateExpired(facts: &facts)
-          try await initialize(facts: &facts)
+          try await updateExpired()
+          try await initialize()
         } catch { print(error) }
 
-        try? await Task.sleep(for: .seconds(refreshInterval))
+        try? await clock.sleep(for: .seconds(refreshInterval))
       }
     }
   }
 
-  private func initialize(facts: inout [Fact]) async throws {
+  func initialize() async throws {
     for language in Self.supportedLanguages {
       while facts.filter({ $0.language == language }).count < cacheCount {
         if let fact = try await fetch(in: language) {
@@ -27,9 +29,11 @@ extension Facts {
     }
   }
 
-  private func updateExpired(facts: inout [Fact]) async throws {
-    for (index, fact) in facts.enumerated().filter({ $0.element.expiry < .now }) {
+  private func updateExpired() async throws {
+    @Dependency(\.date.now) var now
+    for (index, fact) in facts.enumerated().filter({ $0.element.expiry < now }) {
       if let fact = try await fetch(in: fact.language) {
+        print("updating expired")
         facts[index] = fact
       }
     }

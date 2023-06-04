@@ -1,7 +1,6 @@
 // Created by Leopold Lemmermann on 04.06.23.
 
-import protocol Dependencies.DependencyKey
-import struct Dependencies.DependencyValues
+import Dependencies
 import struct Foundation.Locale
 
 extension DependencyValues {
@@ -12,7 +11,7 @@ extension DependencyValues {
 }
 
 struct Gpt3Client {
-  let fetchFact: (_ language: Locale.LanguageCode) async throws -> String?
+  var fetchFact: (_ language: Locale.LanguageCode) async throws -> String?
 }
 
 extension Gpt3Client: DependencyKey {
